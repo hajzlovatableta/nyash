@@ -313,6 +313,10 @@ body:has(section:target) section:target {
   display: grid !important;
 }
 
+#confirm {
+  display: none;
+}
+
 /* Default state: if no hash, show confirm */
 :root:not(:has(section:target)) #confirm {
   display: grid !important;
