@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" id="top">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nyash! – Find Your Match</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+
+  <!-- SECTION 1 — Hero -->
+  <section id="hero" class="section">
+    <div class="container">
+      <h1>Nyash!</h1>
+      <p class="lead">Find your vibe. Match your energy.</p>
+      <a class="btn" href="#personal">Let’s Get Started</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — Personal info -->
+  <section id="personal" class="section">
+    <div class="container container-left">
+      <h2>Personal Information</h2>
+      <form>
+        <div class="field">
+          <label for="firstName">First name *</label>
+          <input id="firstName" name="firstName" class="input" type="text" required minlength="2" placeholder="Alex"
+            pattern="[A-Za-zÀ-ž' -]{2,}">
+        </div>
+
+        <div class="field">
+          <label for="lastName">Surname *</label>
+          <input id="lastName" name="lastName" class="input" type="text" required minlength="2" placeholder="Morgan"
+            pattern="[A-Za-zÀ-ž' -]{2,}">
+        </div>
+
+        <div class="field">
+          <label for="email">Email *</label>
+          <input id="email" name="email" class="input" type="email" required placeholder="you@example.com">
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input id="phone" name="phone" class="input" type="tel" placeholder="+421 900 123 456"
+            pattern="\\+?[0-9\\s\\-]{7,}">
+        </div>
+
+        <div class="field date-field">
+          <label for="dob">Date of birth *</label>
+          <input id="dob" name="dob" class="input" type="date" required min="1950-01-01" max="2007-01-01">
+        </div>
+
+        <button class="btn" type="submit" formmethod="get" formaction="#preferences">Next</button>
+      </form>
+    </div>
+    <a class="fab-up" href="#hero"><span></span></a>
+  </section>
+
+  <!-- SECTION 3 — Preferences -->
+  <section id="preferences" class="section">
+    <div class="container container-left">
+      <h2>What are you looking for?</h2>
+
+      <form>
+        <fieldset>
+          <legend>Gender *</legend>
+          <label><input type="radio" name="gender" required> Female</label><br>
+          <label><input type="radio" name="gender"> Male</label><br>
+          <label><input type="radio" name="gender"> Non-binary</label><br>
+          <label><input type="radio" name="gender"> Prefer not to say</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Interested in *</legend>
+          <!-- at least one required -->
+          <label><input type="checkbox" name="interest"> Women</label><br>
+          <label><input type="checkbox" name="interest"> Men</label><br>
+          <label><input type="checkbox" name="interest"> Non-binary</label>
+        </fieldset>
+
+        <div class="field">
+          <label for="bio">Tell us about yourself *</label>
+          <textarea id="bio" name="bio" class="input" required rows="4"
+            placeholder="Hobbies, passions, what makes you smile..."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="photo">Profile photo *</label>
+          <input id="photo" name="photo" class="input" type="file" accept="image/*" required>
+        </div>
+
+        <button class="btn" type="submit" formmethod="get" formaction="#account">Next</button>
+      </form>
+    </div>
+    <a class="fab-up" href="#personal"><span></span></a>
+  </section>
+
+  <!-- SECTION 4 — Account setup -->
+  <section id="account" class="section">
+    <div class="container container-left">
+      <h2>Create your account</h2>
+
+      <!-- Action left empty = same document; the button drives navigation to #confirm -->
+      <form action="" method="get">
+        <div class="field">
+          <label for="username">Username *</label>
+          <input id="username" name="username" class="input" type="text" required minlength="3"
+            placeholder="nyashlover23" autocomplete="username">
+        </div>
+
+        <div class="field">
+          <label for="password">Password *</label>
+          <input id="password" name="password" class="input" type="password" required minlength="5"
+            pattern="^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{5,}$" placeholder="•••••" autocomplete="new-password">
+          <p class="help">Min 5 chars, 1 uppercase, 1 number, 1 special character.</p>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Confirm password *</label>
+          <input id="confirm" name="confirm" class="input" type="password" required minlength="5"
+            pattern="^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{5,}$" placeholder="•••••" autocomplete="new-password">
+          <p class="help">Repeat the password (HTML can’t compare them without JS).</p>
+        </div>
+
+        <fieldset>
+          <legend>Notifications</legend>
+          <label><input type="checkbox" name="notif_matches" checked> Send me match suggestions</label><br>
+          <label><input type="checkbox" name="notif_tips"> Email me date tips</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Theme preference</legend>
+          <select class="input" name="theme" required>
+            <option value="light">Light</option>
+            <option value="dark" selected>Dark (default)</option>
+            <option value="system">System</option>
+          </select>
+        </fieldset>
+
+        <!-- Navigates to #confirm once the form is valid -->
+        <button class="btn" type="submit" formmethod="get" formaction="#confirm">Finish Setup</button>
+      </form>
+    </div>
+    <a class="fab-up" href="#preferences"><span></span></a>
+  </section>
+
+
+  <!-- SECTION 5 — Confirmation -->
+  <section id="confirm" class="section">
+    <div class="container">
+      <h2>Welcome to Nyash 💘</h2>
+      <p class="lead small">
+        Your profile has been created. Ready to meet your match?
+      </p>
+      <a class="btn" href="#hero">Back to start</a>
+    </div>
+    <a class="fab-up" href="#account"><span></span></a>
+  </section>
+
+</body>
+
+</html>
