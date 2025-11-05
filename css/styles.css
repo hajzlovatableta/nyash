@@ -22,7 +22,7 @@ body {
 
 body {
   margin: 0;
-  overflow: hidden;
+  overflow: auto;
   font-family: var(--ff-body);
   background: var(--rosewood);
   color: var(--peony);
@@ -36,13 +36,18 @@ body:has(.btn:focus-visible) {
   color: var(--rosewood);
 }
 
-/* Sections as full pages toggled with :target */
 .section {
-  position: fixed;
-  inset: 0;
+  position: relative;
+  inset: auto;
   display: none;
+  /* still controlled by :target rules */
+  padding: 3rem 1.5rem;
+  min-height: 100dvh;
+  overflow: auto;
   place-items: center;
-  padding: 3rem 1.5rem
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+  /* space for FAB */
 }
 
 :root:not(:has(:target)) #hero {
@@ -150,18 +155,19 @@ body:has(.btn:focus-visible) .btn {
 /* Floating back buttons */
 .fab-up {
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  width: 56px;
-  height: 56px;
+  right: 0.75rem;
+  bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   color: inherit;
   border: 2px solid currentColor;
   text-decoration: none;
-  z-index: 3
+  z-index: 5;
 }
+
 
 .fab-up span {
   width: 0;
@@ -310,14 +316,40 @@ body:has(section:target) section {
 
 /* Show only the targeted section */
 body:has(section:target) section:target {
-  display: grid !important;
+  display: block !important;
 }
 
-#confirm {
-  display: none;
+/* Default state */
+:root:not(:has(section:target)) #hero {
+  display: block !important;
 }
 
-/* Default state: if no hash, show confirm */
-:root:not(:has(section:target)) #confirm {
-  display: grid !important;
+
+
+@media (min-width: 720px) {
+  #hero .container {
+    margin-top: 8vh;
+    margin-bottom: 8vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 2.9rem;
+  }
+
+  .fab-up {
+    width: 30px;
+    height: 30px;
+    right: 0.4rem;
+    bottom: calc(env(safe-area-inset-bottom) + 0.4rem);
+  }
+
+  .fab-up span {
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 9px solid var(--peony)
+  }
 }
